@@ -14,7 +14,12 @@ var content = "JxRV2nULc/2iJYP5w5Ilo9k/gJwM79Aq/S7sb1hfvNWQGsaU7iaoCxcc4bMdVVS3b
 
 func main() {
 	// Decrypt
+	pukey := C.CString(publicKey)
+	cont := C.CString(content)
 	plaintext := C.RSAPublicDecrypt(C.CString(publicKey), C.CString(content))
+	plaintextStr := C.GoString(plaintext)
+	C.free(unsafe.Pointer(pukey))
+	C.free(unsafe.Pointer(cont))
 	plaintextStr := C.GoString(plaintext)
 	if plaintextStr == "" {
 		panic("RSA PublicKey Decrypt failed")
