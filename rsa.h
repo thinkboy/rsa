@@ -96,6 +96,7 @@ int DoPublicKeyDecryption(const unsigned char *key,int key_size,const unsigned c
 		result = RSA_public_decrypt(flen, from_temp, to_temp, rsa, padding);
 		if(-1 == result)
 		{
+			free(rsa);
 			free(from_temp);
 			free(to_temp);
 			return 0;
@@ -105,12 +106,14 @@ int DoPublicKeyDecryption(const unsigned char *key,int key_size,const unsigned c
 		to_count += result;
 		if((to_count + result) > to_size)
 		{
+			free(rsa);
 			free(from_temp);
 			free(to_temp);
 			return 0;
 		}
 	}
 	
+	free(rsa);
 	free(from_temp);
 	free(to_temp);
 	return to_count;
