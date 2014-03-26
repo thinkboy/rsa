@@ -93,6 +93,7 @@ int DoPublicKeyDecryption(const unsigned char *key,int key_size,const unsigned c
 		memset(to_temp, 0x00, flen);
 		memcpy(from_temp, &from[flen * i], flen);
 		fsurlen -= flen;
+		//TODO:here has a bug that result == -1, here we ignore it
 		result = RSA_public_decrypt(flen, from_temp, to_temp, rsa, padding);
 		if(-1 == result)
 		{
