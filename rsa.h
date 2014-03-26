@@ -63,14 +63,14 @@ int base64_decode(char *src,unsigned char *dst)
 // RSA解密
 int DoPublicKeyDecryption(const unsigned char *key,int key_size,const unsigned char *from,int from_size,unsigned char *to,int to_size)
 {
-	int						padding;
-	int						fsurlen,to_count,flen;
-	int						result;
-	int						i;
+	int			padding;
+	int			fsurlen,to_count,flen;
+	int			result;
+	int			i;
 	const unsigned char	*ucp;
-	unsigned char			*from_temp;
-	unsigned char			*to_temp;
-	RSA						*rsa;
+	unsigned char		*from_temp;
+	unsigned char		*to_temp;
+	RSA			*rsa;
     
 	ucp = key;
 	rsa = d2i_RSA_PUBKEY(NULL, &ucp, key_size);
