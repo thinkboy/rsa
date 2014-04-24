@@ -154,7 +154,7 @@ char* RSAPublicDecrypt(char *publickey, char *dem)
     
     free(puk);
     free(de);
-    free(plaintext);
+    //free(plaintext); //由使用者来释放
     
     return plaintext;
 }
