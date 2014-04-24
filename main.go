@@ -21,6 +21,9 @@ func main() {
 	C.free(unsafe.Pointer(pukey))
 	C.free(unsafe.Pointer(cont))
 	plaintextStr := C.GoString(plaintext)
+	if plaintext != nil {
+		C.free(unsafe.Pointer(plaintext))
+	}
 	if plaintextStr == "" {
 		panic("RSA PublicKey Decrypt failed")
 	}
